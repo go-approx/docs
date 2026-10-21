@@ -5,7 +5,7 @@
 # minor version among the libraries the pages describe (0.1, 0.2, ...), or
 # "main" while none of them is tagged. The CI sets it through --baseURL, from
 # params.libraries below. This default is the same build.
-baseURL: "https://go-approx.github.io/docs/0.1/"
+baseURL: "https://go-approx.github.io/docs/0.2/"
 title: "go-approx"
 # themes/hextra is the tannevaled/hextra fork, pinned at a release tag:
 # upstream Hextra plus opt-in features (partial menu items, combos,
@@ -89,7 +89,7 @@ params:
   # version among them is the documentation's version label (v0.1.2 -> 0.1):
   # the CI reads it here.
   libraries:
-    interp: "v0.1.0"
+    interp: "v0.2.0"
     poly: "v0.1.0"
   versions:
     # The version selector shows "main" with the development icon.

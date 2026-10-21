@@ -1,18 +1,18 @@
 ---
 title: "interp"
 weight: 10
-description: "Interpolation, splines and smoothing in pure Go, validated against SciPy and NumPy. Released v0.1.0."
+description: "Interpolation, splines and smoothing in pure Go, validated against SciPy and NumPy. Released v0.2.0."
 ---
 
-<!-- From go-approx/interp v0.1.0, README.md: the text is the library's. Change it there first. -->
+<!-- From go-approx/interp v0.2.0, README.md: the text is the library's. Change it there first. -->
 
-**Status: released v0.1.0.**
+**Status: released v0.2.0.**
 
 Interpolation, splines and smoothing in pure Go (`CGO_ENABLED=0`), validated
 against SciPy and NumPy.
 
 ```sh
-go get github.com/go-approx/interp@v0.1.0
+go get github.com/go-approx/interp@v0.2.0
 ```
 
 ```go
@@ -36,7 +36,8 @@ sm, _ := interp.MakeSplrep(x, y, 3, 0.05, nil)      // FITPACK smoothing spline
 | `NewCubicHermite`, `NewPchip`, `NewAkima` | `CubicHermiteSpline`, `PchipInterpolator`, `Akima1DInterpolator` / `makima` |
 | `MakeInterpSpline`, `BSpline`, `NewDesignMatrix` | `make_interp_spline`, `BSpline`, `BSpline.design_matrix` |
 | `MakeLsqSpline` | `make_lsq_spline` |
-| `MakeSplrep` (FITPACK smoothing: automatic knots, smoothing factor, weights, user knots) | `make_splrep`, `splrep`, `UnivariateSpline` |
+| `MakeSplrep` (FITPACK smoothing: automatic knots, smoothing factor, weights, user knots) | `make_splrep`, `UnivariateSpline` |
+| `Splrep` (FITPACK `curfit` itself: the legacy knot placement of `fpknot`, weights, bounds, `nest`, `ier`; new in v0.2.0) | `splrep` |
 | `NewRGI`, `Interpn` (`linear`, `nearest`, `slinear`, `cubic`, `quintic`) | `RegularGridInterpolator`, `interpn` |
 | `MakeNdInterp`, `NdBSpline` (tensor-product splines) | `make_ndbspl`, `NdBSpline` |
 | `NewBicubic` | `RectBivariateSpline(..., s=0)` |
@@ -76,16 +77,20 @@ periodic smoothing spline of `make_splrep` are not provided.
 the table: construction and evaluation at 10^3 to 10^6 points, Go against
 SciPy on one core, interleaved rounds, with the load average of the host.
 
-The README, measured 2026-10-19 (load 3–5), reports interp faster than SciPy
-on PCHIP, Akima/makima, cubic evaluation, periodic cubic construction,
-nearest-neighbour `interp1d`, `make_splrep`, least-squares splines and every
-`RegularGridInterpolator` construction.
+The README, measured 2026-10-19 (load 3–5) and, for the rows the second
+performance pass touched, 2026-10-21 (load 5–7), reports interp faster than
+SciPy on PCHIP, Akima/makima, cubic construction (1.3–4x) and evaluation
+(2–2.7x), periodic cubic construction, B-spline evaluation (quintic
+1.95–2.4x), `numpy.interp` (1.2–2x), linear `interp1d`, nearest-neighbour
+`interp1d`, `make_splrep` (2x), the legacy `splrep` with `Splrep` (2.8–2.9x),
+least-squares splines, every `RegularGridInterpolator` construction and
+`RectBivariateSpline` construction (2.1–2.5x) and evaluation (1.6–2.6x).
 
-**Open defects, still slower than the reference** (from the README): `splrep`
-against SciPy's legacy FITPACK `splrep` (0.33–0.38x), `RectBivariateSpline`
-construction (0.84–0.88x), `np.interp` and linear `interp1d` evaluation
-(0.86–0.89x), quintic B-spline evaluation (0.92–0.97x) and not-a-knot cubic
-construction from 10^5 points (0.92x).
+**Open defects, at parity or slower than the reference** (from the README):
+quintic `make_interp_spline` construction at 10^4 points (0.99x, parity within
+noise); and, from the 2026-10-19 rows not re-measured,
+`RegularGridInterpolator` linear evaluation at 10^3–10^4 points (0.95–0.98x)
+and shuffled-query cubic evaluation at 10^4 points (0.94x).
 
 ## Gaps
 
