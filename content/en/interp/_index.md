@@ -1,18 +1,18 @@
 ---
 title: "interp"
 weight: 10
-description: "Interpolation, splines and smoothing in pure Go, validated against SciPy and NumPy. Released v0.2.0."
+description: "Interpolation, splines and smoothing in pure Go, validated against SciPy and NumPy. Released v0.2.1."
 ---
 
-<!-- From go-approx/interp v0.2.0, README.md: the text is the library's. Change it there first. -->
+<!-- From go-approx/interp v0.2.1, README.md: the text is the library's. Change it there first. -->
 
-**Status: released v0.2.0.**
+**Status: released v0.2.1.**
 
 Interpolation, splines and smoothing in pure Go (`CGO_ENABLED=0`), validated
 against SciPy and NumPy.
 
 ```sh
-go get github.com/go-approx/interp@v0.2.0
+go get github.com/go-approx/interp@v0.2.1
 ```
 
 ```go
@@ -91,9 +91,11 @@ The third performance pass
 7–10x and the cubic evaluation of shuffled queries 3.3–9.2x faster than
 SciPy, with bit-identical results.
 
-**Open defects, at parity or slower than the reference** (from the README):
-quintic `make_interp_spline` construction at 10^4 points (0.99x, parity within
-noise).
+**The two former gaps are closed in v0.2.1:** `RegularGridInterpolator` linear
+evaluation (7–10x faster than SciPy) and the cubic evaluation of shuffled
+queries (3–9x faster). Every measured interp case is now at or below SciPy's
+time; the only row at parity is quintic `make_interp_spline` construction at
+10^4 points (0.99x, within noise).
 
 ## Gaps
 

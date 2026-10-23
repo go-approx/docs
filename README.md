@@ -12,7 +12,7 @@ go-approx's branding. It documents
 [`go-approx/interp`](https://github.com/go-approx/interp) and
 [`go-approx/poly`](https://github.com/go-approx/poly), one section each,
 summarising the library's README with its verification, its performance and
-its release status (interp released v0.2.0, poly released v0.1.0).
+its release status (interp released v0.2.1, poly released v0.1.0).
 
 ## Versions
 

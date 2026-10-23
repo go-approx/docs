@@ -89,7 +89,7 @@ params:
   # version among them is the documentation's version label (v0.1.2 -> 0.1):
   # the CI reads it here.
   libraries:
-    interp: "v0.2.0"
+    interp: "v0.2.1"
     poly: "v0.1.0"
   versions:
     # The version selector shows "main" with the development icon.
