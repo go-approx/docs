@@ -18,13 +18,13 @@ approximation are planned and not written yet.
 
 | Library | Status | What it does |
 | --- | --- | --- |
-| [interp]({{< relref "interp" >}}) | released v0.2.0 | interpolation, splines and smoothing: `interp1d`, cubic splines, PCHIP, Akima and makima, B-splines, FITPACK smoothing splines and `splrep`, regular-grid and tensor-product interpolation |
+| [interp]({{< relref "interp" >}}) | released v0.2.1 | interpolation, splines and smoothing: `interp1d`, cubic splines, PCHIP, Akima and makima, B-splines, FITPACK smoothing splines and `splrep`, regular-grid and tensor-product interpolation |
 | [poly]({{< relref "poly" >}}) | released v0.1.0 | polynomials: evaluation, arithmetic, least-squares fitting, roots, and the Chebyshev, Legendre, Hermite, HermiteE and Laguerre bases |
 
 ## Install
 
 ```sh
-go get github.com/go-approx/interp@v0.2.0
+go get github.com/go-approx/interp@v0.2.1
 go get github.com/go-approx/poly@v0.1.0
 ```
 
