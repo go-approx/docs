@@ -85,12 +85,15 @@ SciPy on PCHIP, Akima/makima, cubic construction (1.3–4x) and evaluation
 `interp1d`, `make_splrep` (2x), the legacy `splrep` with `Splrep` (2.8–2.9x),
 least-squares splines, every `RegularGridInterpolator` construction and
 `RectBivariateSpline` construction (2.1–2.5x) and evaluation (1.6–2.6x).
+The third performance pass
+([go-approx/interp#5](https://github.com/go-approx/interp/pull/5), measured
+2026-10-22 at load 7.4–8) makes `RegularGridInterpolator` linear evaluation
+7–10x and the cubic evaluation of shuffled queries 3.3–9.2x faster than
+SciPy, with bit-identical results.
 
 **Open defects, at parity or slower than the reference** (from the README):
 quintic `make_interp_spline` construction at 10^4 points (0.99x, parity within
-noise); and, from the 2026-10-19 rows not re-measured,
-`RegularGridInterpolator` linear evaluation at 10^3–10^4 points (0.95–0.98x)
-and shuffled-query cubic evaluation at 10^4 points (0.94x).
+noise).
 
 ## Gaps
 
